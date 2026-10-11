@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emmanuella | Visual &amp; UI/UX Designer</title>
+  <meta name="description" content="Portfolio of Emmanuella, a visual and UI/UX designer." />
+  <meta name="theme-color" content="#0e0e0e" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="is-locked">
+  <!-- ============ INTRO ============ -->
+  <section class="intro" id="intro" aria-label="Introduction">
+    <h1 class="sr-only">Emmanuella Aiyede, Visual and UI/UX Designer</h1>
+    <p class="intro__status mono" id="status">Loading assets <span id="count">0</span>/100</p>
+
+    <!-- Phase 1: big staggered name + title -->
+    <div class="intro__big" id="introBig" aria-hidden="true">
+      <span class="mask"><span><em>Emmanuella</em></span></span>
+      <span class="mask l2"><span>Aiyede</span></span>
+      <span class="mask l3"><span><em>Visual &amp; UI/UX</em></span></span>
+      <span class="mask l4"><span>Designer</span></span>
+    </div>
+
+    <!-- Phase 2: split. name left, panel + ENTER centre, title right -->
+    <div class="intro__split" id="introSplit">
+      <div class="split__name" aria-hidden="true">
+        <span class="mask"><span><em>Emmanuella</em></span></span>
+        <span class="mask"><span>Aiyede</span></span>
+      </div>
+
+      <button class="panel" id="panel" type="button" disabled aria-label="Enter portfolio">
+        <img src="/images/intro/cover.webp" alt="" />
+        <span class="panel__enter mono" id="enter"><i></i>Enter<i></i></span>
+      </button>
+
+      <div class="split__title">
+        <div aria-hidden="true">
+          <span class="mask"><span><em>Visual &amp; UI/UX</em></span></span>
+          <span class="mask"><span>Designer</span></span>
+        </div>
+        <p class="motto"><span class="mask"><span>I bring brand identity to life.</span></span></p>
+      </div>
+  </section>
+
+  <!-- red curtain used for the enter transition -->
+  <div class="wipe" id="wipe" aria-hidden="true"></div>
+
+  <!-- ============ MAIN ============ -->
+  <main id="main" inert>
+    <section class="board" id="board" aria-labelledby="boardTitle">
+      <header class="board__head">
+        <h2 class="board__title" id="boardTitle">
+          <span class="mask"><span>Featured</span></span>
+          <span class="mask"><span>Work</span></span>
+        </h2>
+        <p class="board__hint">Three case files. Open one to see the work inside.</p>
+      </header>
+
+      <div class="stage" id="stage">
+        <svg class="thread" id="thread" aria-hidden="true">
+          <path d="" />
+        </svg>
+        <ul class="files__list" id="filesList"></ul>
+      </div>
+    </section>
+
+    <section class="casegrid" id="caseGrid" hidden>
+      <div class="casegrid__head">
+        <div>
+          <p class="mono" id="gridLabel"></p>
+          <h2 class="casegrid__title" id="gridTitle"></h2>
+        </div>
+        <button class="closefile mono" id="gridClose" type="button">Close file</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="skills" id="skills" aria-labelledby="skillsTitle">
+        <h2 class="skills__title" id="skillsTitle">
+          <span class="mask"><span>Skills &amp; Tools</span></span>
+        </h2>
+        <ul class="ledger" id="ledger"></ul>
+      </section>
+
+    <footer class="foot">
+      <p>Open to design roles.</p>
+      <a href="https://github.com/pretty-ginger">github/pretty-ginger</a>
+      <a href="mailto:aiyedeemmanuella@gmail.com">aiyedeemmanuella@gmail.com</a>
+    </footer>
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
+    <button class="lb__close mono" id="lbClose" type="button">Close</button>
+
+    <div class="lb__stage" id="lbStage">
+      <button class="lb__nav lb__nav--prev" id="lbPrev" type="button" aria-label="Previous page">&larr;</button>
+      <div class="lb__media"><img id="lbImg" alt="" /></div>
+      <button class="lb__nav lb__nav--next" id="lbNext" type="button" aria-label="Next page">&rarr;</button>
+    </div>
+
+    <aside class="lb__info">
+      <p class="mono lb__tag" id="lbTag"></p>
+      <h3 class="lb__title" id="lbTitle"></h3>
+      <p class="lb__desc" id="lbDesc"></p>
+      <dl class="lb__facts">
+        <div>
+          <dt class="mono">Role</dt>
+          <dd id="lbRole"></dd>
+        </div>
+        <div>
+          <dt class="mono">Tools</dt>
+          <dd id="lbTools"></dd>
+        </div>
+      </dl>
+      <p class="mono lb__count" id="lbCount"></p>
+      <a class="lb__link mono" id="lbLink" href="#" target="_blank" rel="noopener" hidden>View live</a>
+    </aside>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
