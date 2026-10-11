@@ -105,7 +105,7 @@ export const files = [
         tools: 'Affinity, Canva',
         description: 'A collection of design templates that can be easily adapted or remodelled for different purposes.',
         cover: '/images/graphics/templates/cover.webp',
-        slides: ['/images/graphics/templates/01.webp', '/images/graphics/templates/02.webp', '/images/graphics/templates/03.webp'],
+        slides: ['/images/graphics/templates/01.webp', '/images/graphics/templates/02.webp'],
        
       },
     ],

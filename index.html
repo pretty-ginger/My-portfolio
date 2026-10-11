@@ -82,11 +82,11 @@
     </section>
 
     <section class="skills" id="skills" aria-labelledby="skillsTitle">
-        <h2 class="skills__title" id="skillsTitle">
-          <span class="mask"><span>Skills &amp; Tools</span></span>
-        </h2>
-        <ul class="ledger" id="ledger"></ul>
-      </section>
+      <h2 class="skills__title" id="skillsTitle">
+        <span class="mask"><span>Skills &amp; Tools</span></span>
+      </h2>
+      <ul class="ledger" id="ledger"></ul>
+    </section>
 
     <footer class="foot">
       <p>Open to design roles.</p>
@@ -105,7 +105,11 @@
       <button class="lb__nav lb__nav--next" id="lbNext" type="button" aria-label="Next page">&rarr;</button>
     </div>
 
-    <aside class="lb__info">
+    <aside class="lb__info" id="lbInfo">
+      <button class="lb__handle" id="lbHandle" type="button" aria-expanded="false">
+        <span class="lb__grip"></span>
+        <span class="sr-only">Show or hide details</span>
+      </button>
       <p class="mono lb__tag" id="lbTag"></p>
       <h3 class="lb__title" id="lbTitle"></h3>
       <p class="lb__desc" id="lbDesc"></p>

@@ -291,13 +291,43 @@ em { font-style: normal; display: inline-block; transform: skewX(-12deg); transf
 .lb__count { margin-top: auto; }
 .lb__link { align-self: flex-start; padding: 0.7rem 1.1rem; background: var(--red); color: #fff; text-decoration: none; }
 
+/* grip button: hidden on desktop */
+.lb__handle { display: none; }
+
 @media (max-width: 800px) {
-  .lb { flex-direction: column; }
-  .lb__stage { flex: 1 1 55%; padding: 4rem 1rem 1rem; }
-  .lb__info { width: auto; max-height: 42%; padding: 1.25rem 1.25rem 2rem; border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
-  .lb__nav { width: 2.75rem; height: 2.75rem; }
+  .lb { display: block; }
+
+  /* photo fills the screen; bottom padding leaves room for the collapsed panel */
+  .lb__stage { position: absolute; inset: 0; padding: 3.5rem 0.75rem 6.5rem; }
+  .lb__nav { top: calc(50% - 1.25rem); width: 2.75rem; height: 2.75rem; }
   .lb__nav--prev { left: 0.5rem; }
   .lb__nav--next { right: 0.5rem; }
+
+  /* pull-up panel */
+  .lb__info {
+    --peek: 6rem; /* how much shows when collapsed */
+    position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
+    width: auto; min-height: 13rem; max-height: 72svh; gap: 0.75rem;
+    padding: 0 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    background: #0e0e0e;
+    border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.16); border-radius: 1rem 1rem 0 0;
+    overflow: hidden;
+    transform: translateY(calc(100% - var(--peek)));
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .lb__info.is-open { overflow-y: auto; overscroll-behavior: contain; transform: translateY(0); }
+
+  .lb__handle {
+    display: block; position: sticky; top: 0; z-index: 1;
+    width: calc(100% + 2.5rem); margin: 0 -1.25rem; padding: 0.7rem 0 0.6rem; background: #0e0e0e;
+  }
+  .lb__grip { display: block; width: 2.5rem; height: 4px; margin: 0 auto; border-radius: 2px; background: rgba(255, 255, 255, 0.35); }
+
+  .lb__count { position: absolute; top: 1.5rem; right: 1.25rem; z-index: 2; margin: 0; pointer-events: none; }
+
+  /* collapsed: one-line title, hidden button */
+  .lb__info:not(.is-open) .lb__title { font-size: 1.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lb__info:not(.is-open) .lb__link { visibility: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {

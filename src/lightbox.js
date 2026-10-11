@@ -9,10 +9,18 @@ const prev = $('#lbPrev');
 const next = $('#lbNext');
 const closeBtn = $('#lbClose');
 const main = $('#main');
+const info = $('#lbInfo');
+const handle = $('#lbHandle');
 
 let work = null;
 let index = 0;
 let opener = null;
+
+function setSheet(open) {
+  info.classList.toggle('is-open', open);
+  handle.setAttribute('aria-expanded', String(open));
+  info.scrollTop = 0;
+}
 
 function show(i, dir = 0) {
   const total = work.slides.length;
@@ -82,6 +90,7 @@ export function openLightbox(w, trigger) {
   lb.hidden = false;
   document.body.classList.add('is-locked');
   main.inert = true;
+  setSheet(false);
   show(0);
 
   gsap.fromTo(lb, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' });
@@ -109,8 +118,31 @@ export function initLightbox() {
   closeBtn.addEventListener('click', closeLightbox);
 
   // click the dark area around the image to close
+    // click handling: collapse the panel first, otherwise close on the dark area
   lb.addEventListener('click', (e) => {
+    if (e.target.closest('.lb__nav')) return;
+    if (info.classList.contains('is-open') && e.target.closest('.lb__stage')) {
+      setSheet(false);
+      return;
+    }
     if (e.target === lb || e.target === stage) closeLightbox();
+  });
+
+  // grip button toggles the panel
+  handle.addEventListener('click', () => setSheet(!info.classList.contains('is-open')));
+
+  // swipe the panel up to open, down to close (down only counts from the top of its text)
+  let sheetY = 0;
+  let sheetTop = 0;
+  info.addEventListener('touchstart', (e) => {
+    sheetY = e.changedTouches[0].clientY;
+    sheetTop = info.scrollTop;
+  }, { passive: true });
+  info.addEventListener('touchend', (e) => {
+    const dy = e.changedTouches[0].clientY - sheetY;
+    const open = info.classList.contains('is-open');
+    if (!open && dy < -40) setSheet(true);
+    else if (open && dy > 60 && sheetTop === 0) setSheet(false);
   });
 
   document.addEventListener('keydown', (e) => {
